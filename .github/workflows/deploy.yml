@@ -97,15 +97,12 @@ jobs:
           helmfile repos
       
       - name: Deploy - blog draft 
-        if: github.event_name == 'push' &&  github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/develop'
         run: |
           helmfile -l name=blog-draft sync --skip-deps
       
       - name: Deploy - blog
-        if: >- 
-          ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) ||
-          ( github.event_name == 'tag' )
-            
+        if: contains( github.ref, 'refs/tags/' )
         run: | 
           helmfile -l name=blog sync --skip-deps
     
