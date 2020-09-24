@@ -20,7 +20,7 @@ jobs:
           ref="${{ github.ref }}"
 
           if [[ "$ref" == refs/heads/* ]]; then
-            branch="${event_ref#refs/heads/}"
+            branch="${ref#refs/heads/}"
 
             if [ "$branch" = "master" ]; then
               TAG="$image:edge"              
