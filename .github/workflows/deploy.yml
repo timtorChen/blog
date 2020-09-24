@@ -17,10 +17,9 @@ jobs:
         run: |
           TAG=null
           image=timtor/blog
-          event="${{ github.event_name }}"
-          event_ref="${{ github.ref }}"
+          ref="${{ github.ref }}"
 
-          if [ "$event" = "push" ]; then
+          if [[ "$ref" == refs/heads/* ]]; then
             branch="${event_ref#refs/heads/}"
 
             if [ "$branch" = "master" ]; then
@@ -29,8 +28,8 @@ jobs:
               TAG="$image:dev"
             fi
 
-          elif [ "$event" = "tag" ]; then
-            version="${event_ref#refs/tags/}"
+          elif [[ "$ref" == refs/tags/* ]]; then
+            version="${ref#refs/tags/}"
             TAG="$image:$version,$image:latest"
           fi
 
