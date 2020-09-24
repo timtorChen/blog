@@ -7,40 +7,33 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import {createGlobalStyle, ThemeProvider} from 'styled-components'
 
-import Header from "./header"
-import "./layout.css"
+const GlobalStyle = createGlobalStyle`
+  body{
+    margin: 0px;
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
+`
+
+const theme = {
+  mode: "light"
+}
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>
+      <div>
+        <div>---Header---</div>
+        <div>{children}</div>
+        <div>---Footer---</div>
       </div>
-    </>
+    </ThemeProvider>
   )
 }
 
