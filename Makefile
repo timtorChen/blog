@@ -20,8 +20,5 @@ docker-build:
 	  $(FLAGS) \
 	  . 
 
-docker-push: 
-	FLAGS=--push $(MAKE) docker-build
-	
 docker-build-local:
 	PLATFORM=linux/amd64 $(MAKE) docker-build
