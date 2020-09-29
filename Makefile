@@ -1,24 +1,32 @@
 .DEFAULT_GOAD :=build
 
-.PHONY: build docker-build docker-build-local
+.PHONY: build test start
 
+YARN = yarn --cwd website 
+
+yanr:
+	$(YARN)
 build:
-	yarn build
+	$(YARN) build
+test:
+	$(YARN) test
+start:
+	$(YARN) start
 
-IMAGE     = timtor/blog
-VERSION  ?= latest
-TAG      ?= timtor/blog:$(VERSION)
+
+.PHONY: docker-build docker-build-amd
+
 PLATFORM ?= linux/arm64,linux/amd64
 FLAGS    ?= 
-	
+
 docker-build:
 	DOCKER_CLI_EXPERIMENTAL=enabled
 	docker buildx build \
-	  -t $(TAG) \
+	  -t timtor/blog:test \
 	  --platform=$(PLATFORM) \
-	  -f deploy/Dockerfile \
+	  -f Dockerfile \
 	  $(FLAGS) \
 	  . 
 
-docker-build-local:
-	PLATFORM=linux/amd64 $(MAKE) docker-build
+docker-build-amd:
+	PLATFORM=linux/amd64 FLAGS="--load" $(MAKE) docker-build 
