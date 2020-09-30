@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  blog:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2020-09-30T14:20:39.642145254+08:00"
+    description: Simple helm chart for my blog
+    digest: 0e2a55de0f4f414c638f84ccf8dda0fbca98c63532117aa57195c47dc379ba7c
+    name: blog
+    type: application
+    urls:
+    - blog-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-09-30T14:20:39.64160266+08:00"
