@@ -78,7 +78,7 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
 
       - name: Setup - kubectl, helm, and helmfile
-        uses: mamezou-tech/setup-helmfile@v0.5.0
+        uses: mamezou-tech/setup-helmfile@v0.7.0
 
       - name: Setup - helm plugins
         run: |
