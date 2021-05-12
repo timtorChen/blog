@@ -36,7 +36,7 @@ jobs:
           echo ::set-output name=tag::${TAG}
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
 
       # defaultly install all platforms
       - name: Setup QEMU
@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout - cluster repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
         with:
           repository: timtorchen/hola-pi-cluster
 
